@@ -1,0 +1,37 @@
+.gcloudignore
+.git
+.gitignore
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+*.log
+.DS_Store
+
+# Security - Never deploy these
+.env
+.env.local
+.env.development
+.env.production
+*.key
+*.pem
+*.p12
+*.pfx
+config.json
+secrets.json
+credentials.json
+*_credentials.json
+*.backup
+*.bak
+*.tmp
+
+# Development files
+*.local
+.vscode/
+.idea/
+*.swp
+*.swo
+*~

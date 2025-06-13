@@ -1,0 +1,15 @@
+runtime: python39
+
+# No environment variables needed - using Google Cloud Secret Manager
+env_variables:
+  # All secrets are managed via Google Cloud Secret Manager
+  # No hardcoded credentials in source code
+
+automatic_scaling:
+  min_instances: 0
+  max_instances: 10
+  target_cpu_utilization: 0.6
+
+handlers:
+- url: /.*
+  script: auto 
