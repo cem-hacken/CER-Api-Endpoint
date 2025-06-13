@@ -1,8 +1,8 @@
-# 🚀 Exchange Data API - Complete Deployment Guide
+# CER Exchange Data API - Complete Deployment Guide
 
-This guide provides step-by-step instructions for deploying the Exchange Data API system from scratch, including VPN setup, database connectivity, and Google Cloud integration.
+This guide provides step-by-step instructions for deploying the CER Exchange Data API system from scratch, including VPN setup, database connectivity, and Google Cloud integration.
 
-## 📋 Prerequisites
+## Prerequisites
 
 - Google Cloud Platform account with billing enabled
 - AWS RDS database access credentials
@@ -30,7 +30,7 @@ Before starting, ensure you have the following credentials:
   - Endpoint: `[YOUR_WG_ENDPOINT]` (e.g., `vpn.example.com:51821`)
 - **Google Cloud Project ID**: `[YOUR_PROJECT_ID]`
 
-## 🔧 Phase 1: Environment Setup
+## Phase 1: Environment Setup
 
 ### 1.1 Local Development Setup
 
@@ -69,7 +69,7 @@ gcloud services enable appengine.googleapis.com
 gcloud services enable secretmanager.googleapis.com
 ```
 
-## 🌐 Phase 2: VPN Infrastructure Setup
+## Phase 2: VPN Infrastructure Setup
 
 ### 2.1 Create Google Cloud VM
 
@@ -148,7 +148,7 @@ python3 -c 'import socket; s = socket.socket(); s.settimeout(5); s.connect((\"ha
 "
 ```
 
-## 🔒 Phase 3: Database Proxy Setup
+## Phase 3: Database Proxy Setup
 
 ### 3.1 Upload Database Proxy Script
 
@@ -205,7 +205,7 @@ VM_IP=$(gcloud compute instances describe cer-database-proxy --zone=us-central1-
 echo "VM External IP: $VM_IP"
 ```
 
-## 🔐 Phase 4: Google Cloud Secret Manager Setup
+## Phase 4: Google Cloud Secret Manager Setup
 
 ### 4.1 Create Secrets
 
@@ -241,7 +241,7 @@ gcloud secrets versions access latest --secret=api-key
 gcloud secrets versions access latest --secret=db-host
 ```
 
-## 🚀 Phase 5: API Deployment
+## Phase 5: API Deployment
 
 ### 5.1 Test Local API (Optional)
 
@@ -265,7 +265,7 @@ APP_URL=$(gcloud app describe --format="value(defaultHostname)")
 echo "API deployed to: https://$APP_URL"
 ```
 
-## ✅ Phase 6: Verification & Testing
+## Phase 6: Verification & Testing
 
 ### 6.1 Test API Endpoints
 
@@ -296,7 +296,7 @@ python3 -c 'import socket; s = socket.socket(); s.settimeout(5); s.connect((\"[Y
 "
 ```
 
-## 🔄 Phase 7: Google Sheets Integration
+## Phase 7: Google Sheets Integration
 
 ### 7.1 API Configuration for Sheets
 
@@ -332,7 +332,7 @@ function refreshExchangeData() {
 }
 ```
 
-## 🛠️ Phase 8: Maintenance & Monitoring
+## Phase 8: Maintenance & Monitoring
 
 ### 8.1 Log Monitoring
 
@@ -378,7 +378,7 @@ sudo systemctl status db-proxy
 "
 ```
 
-## 🚨 Troubleshooting
+## Troubleshooting
 
 ### Common Issues and Solutions
 
@@ -412,24 +412,14 @@ sudo systemctl status db-proxy
    gcloud compute firewall-rules describe allow-database-proxy
    ```
 
-## 🎯 Success Indicators
+## Success Indicators
 
 Your deployment is successful when:
 
-- ✅ WireGuard shows active handshake: `latest handshake: X seconds ago`
-- ✅ Database proxy service is `active (running)`
-- ✅ Health endpoint returns: `{"database":"connected","status":"healthy"}`
-- ✅ Exchange endpoint returns 230+ records with `"success":true`
-- ✅ Google Sheets can successfully fetch data
-
-## 📞 Support
-
-For issues:
-1. Check service status using commands in Phase 8.1
-2. Review logs for error messages
-3. Verify all credentials in Secret Manager
-4. Ensure WireGuard VPN connection is active
+-  WireGuard shows active handshake: `latest handshake: X seconds ago`
+-  Database proxy service is `active (running)`
+-  Health endpoint returns: `{"database":"connected","status":"healthy"}`
+-  Exchange endpoint returns 230+ records with `"success":true`
+-  Google Sheets can successfully fetch data
 
 ---
-
-**🎉 Your Exchange Data API is now fully operational with enterprise-grade security!** 
